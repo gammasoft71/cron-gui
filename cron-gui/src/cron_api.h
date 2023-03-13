@@ -27,6 +27,7 @@ namespace cron_gui {
         xtd::ustring name;
       };
       static std::vector<task> load();
+      static void save(const std::vector<task>& tasks);
     };
   }
 }

@@ -9,12 +9,15 @@
 namespace cron_gui {
   /// @brief Represents the cron object.
   class cron static_ {
-    using task_collection = std::vector<task>;
   public:
-    static task_collection& tasks();
-    
+    using task_collection = std::vector<task>;
+
+    static const task_collection& tasks();
+    static void tasks(const task_collection& value);
+
   private:
     static void load();
+    static void save();
     static task_collection tasks_;
   };
 }

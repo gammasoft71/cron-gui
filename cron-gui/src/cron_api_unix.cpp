@@ -77,4 +77,8 @@ vector<cron::task> cron::load() {
   return result;
 }
 
+void cron::save(const std::vector<task>& tasks) {
+  /// @todo save tasks on Linux and macOS...
+}
+
 #endif
