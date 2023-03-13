@@ -282,35 +282,6 @@ void editor_form::on_save_button_click(xtd::object& sender, const xtd::event_arg
   on_save_task();
 }
 
-/*
- line format example = "* * * * * echo "hello world" #hello world"
- line format example = "@daily echo "hello world" #hello world"
- 
- * * * * * command # name
- │ │ │ │ │ |         |
- │ │ │ │ │ |         \- The name of the command to run
- │ │ │ │ │ \----------- The command to run on specified time and specified date
- │ │ │ │ \------------- day of the week (0 - 6)
- │ │ │ \--------------- month (1 - 12)
- │ │ \----------------- day of the month (1 - 31)
- │ \------------------- hour (0 - 23)
- \--------------------- minute (0 - 59)
- 
- Special time specification "nicknames" supported :
- @reboot command # name   : Run once after reboot.
- @yearly command # name   : Run once a year, ie.  "0 0 1 1 *".
- @annually command # name : Run once a year, ie.  "0 0 1 1 *".
- @monthly command # name  : Run once a month, ie. "0 0 1 * *".
- @weekly command # name   : Run once a week, ie.  "0 0 * * 0".
- @daily command # name    : Run once a day, ie.   "0 0 * * *".
- @hourly command # name   : Run once an hour, ie. "0 * * * *".
- 
- See :
- * https://linux.die.net/man/5/crontab
- * https://www.geekbitzone.com/posts/macos/crontab/macos-schedule-tasks-with-crontab/
- * https://stackoverflow.com/questions/7195503/setting-up-a-cron-job-in-windows
- */
-
 void editor_form::on_save_task() {
   task_.name(name_text_box_.text());
   task_.command(command_text_box_.text());
