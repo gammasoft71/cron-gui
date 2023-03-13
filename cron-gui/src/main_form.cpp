@@ -1,6 +1,7 @@
 #include "main_form.h"
 #include "cron.h"
 #include "editor_form.h"
+#include "../properties/resources.h"
 
 using namespace std;
 using namespace xtd;
@@ -11,6 +12,7 @@ using namespace cron_gui;
 main_form::main_form() {
   client_size({800, 450});
   controls().push_back_range({main_panel_, buttons_panel_});
+  icon(properties::resources::cron_gui_ico());
   text("Cron");
 
   buttons_panel_.controls().push_back_range({delete_button_, edit_button_, create_button_});
@@ -101,5 +103,10 @@ void main_form::on_task_list_box_selected_index_changed(object& sender, const ev
 }
 
 void main_form::save_tasks() {
+  auto tasks = cron::task_collection {};
+  for (auto task : task_list_box_.items()) {
+    tasks.push_back(as<cron_gui::task>(task.tag()));
+  }
+  cron::tasks(tasks);
 }
 
