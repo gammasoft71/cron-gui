@@ -16,6 +16,7 @@ main_form::main_form() {
   controls().push_back_range({main_panel_, buttons_panel_});
   icon(properties::resources::cron_gui_ico());
   location(properties::settings::default_settings().location());
+  menu(main_menu_);
   text("Cron");
 
   buttons_panel_.controls().push_back_range({delete_button_, edit_button_, create_button_});
@@ -114,6 +115,10 @@ void main_form::on_edit_button_click(object& sender, const event_args& e) {
 void main_form::on_task_list_box_selected_index_changed(object& sender, const event_args& e) {
   delete_button_.enabled(task_list_box_.selected_index() != task_list_box_.npos);
   edit_button_.enabled(task_list_box_.selected_index() != task_list_box_.npos);
+}
+
+void main_form::on_task_exit_menu_item_click(xtd::object& sender, const xtd::event_args& e) {
+  application::exit();
 }
 
 void main_form::save_tasks() {
