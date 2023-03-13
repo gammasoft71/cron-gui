@@ -2,6 +2,7 @@
 #include "cron.h"
 #include "editor_form.h"
 #include "../properties/resources.h"
+#include "../properties/settings.h"
 
 using namespace std;
 using namespace xtd;
@@ -10,9 +11,11 @@ using namespace xtd::forms;
 using namespace cron_gui;
 
 main_form::main_form() {
-  client_size({800, 450});
+  start_position(form_start_position::manual);
+  client_size(properties::settings::default_settings().client_size());
   controls().push_back_range({main_panel_, buttons_panel_});
   icon(properties::resources::cron_gui_ico());
+  location(properties::settings::default_settings().location());
   text("Cron");
 
   buttons_panel_.controls().push_back_range({delete_button_, edit_button_, create_button_});
@@ -51,6 +54,12 @@ main_form::main_form() {
   delete_button_.click += event_handler {*this, &main_form::on_delete_button_click};
 
   load_tasks();
+}
+
+main_form::~main_form() {
+  properties::settings::default_settings().client_size(client_size());
+  properties::settings::default_settings().location(location());
+  properties::settings::default_settings().save();
 }
 
 void main_form::main() {
