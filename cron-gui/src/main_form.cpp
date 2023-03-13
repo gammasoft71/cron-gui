@@ -75,12 +75,17 @@ void main_form::on_create_button_click(object& sender, const event_args& e) {
   task = editor.task();
   debug::write_line("Save {}", task);
   task_list_box_.items().push_back({task.name(), task});
+  task_list_box_.selected_index(task_list_box_.items().size() - 1);
   save_tasks();
 }
 
 void main_form::on_delete_button_click(object& sender, const event_args& e) {
   if (task_list_box_.selected_index() == task_list_box_.npos) return;
-  task_list_box_.items().erase_at(task_list_box_.selected_index());
+  auto selected_index = task_list_box_.selected_index();
+  task_list_box_.items().erase_at(selected_index);
+  task_list_box_.selected_index(task_list_box_.npos);
+  if (selected_index < task_list_box_.items().size()) task_list_box_.selected_index(selected_index);
+  else if (task_list_box_.items().size()) task_list_box_.selected_index(task_list_box_.items().size() - 1);
   save_tasks();
 }
 
