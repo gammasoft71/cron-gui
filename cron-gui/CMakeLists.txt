@@ -9,8 +9,8 @@ add_sources(
   src/cron_api.h
   src/cron_api_unix.cpp
   src/cron_api_win32.cpp
-  src/editor_form.h
-  src/editor_form.cpp
+  src/task_editor_form.h
+  src/task_editor_form.cpp
   src/main_form.h
   src/main_form.cpp
   src/task.h

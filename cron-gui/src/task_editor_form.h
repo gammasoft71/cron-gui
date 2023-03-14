@@ -7,13 +7,13 @@
 /// @brief Represents the namespace that contains application objects.
 namespace cron_gui {
   /// @brief Represents the editor form.
-  class editor_form : public xtd::forms::form {
+  class task_editor_form : public xtd::forms::form {
   public:
     /// @brief Initializes a new instance of the editor_form class.
-    editor_form();
+    task_editor_form();
     
     const cron_gui::task& task() const noexcept;
-    editor_form& task(const cron_gui::task& value) noexcept;
+    task_editor_form& task(const cron_gui::task& value) noexcept;
 
   private:
     void on_command_open_file_dialog_button_click(xtd::object& sender, const xtd::event_args& e);

@@ -1,6 +1,6 @@
 #include "main_form.h"
 #include "cron.h"
-#include "editor_form.h"
+#include "task_editor_form.h"
 #include "../properties/resources.h"
 #include "../properties/settings.h"
 
@@ -79,7 +79,7 @@ void main_form::load_tasks() {
 void main_form::on_create_button_click(object& sender, const event_args& e) {
   auto task = cron_gui::task();
   debug::write_line("Create new task");
-  editor_form editor;
+  task_editor_form editor;
   editor.task(task);
   if (editor.show_sheet_dialog(*this) == forms::dialog_result::cancel) return;
   task = editor.task();
@@ -103,7 +103,7 @@ void main_form::on_edit_button_click(object& sender, const event_args& e) {
   if (task_list_box_.selected_index() == task_list_box_.npos) return;
   auto task = as<cron_gui::task>(task_list_box_.items()[task_list_box_.selected_index()].tag());
   debug::write_line("Edit task ==> {}", task);
-  editor_form editor;
+  task_editor_form editor;
   editor.task(task);
   if (editor.show_sheet_dialog(*this) == forms::dialog_result::cancel) return;
   task = editor.task();

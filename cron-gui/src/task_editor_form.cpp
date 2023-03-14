@@ -1,4 +1,4 @@
-#include "editor_form.h"
+#include "task_editor_form.h"
 
 using namespace std;
 using namespace xtd;
@@ -6,7 +6,7 @@ using namespace xtd::drawing;
 using namespace xtd::forms;
 using namespace cron_gui;
 
-editor_form::editor_form() {
+task_editor_form::task_editor_form() {
   accept_button(save_button_);
   cancel_button(cancel_button_);
   client_size({565, 410});
@@ -15,7 +15,7 @@ editor_form::editor_form() {
   maximize_box(false);
   minimize_box(false);
   start_position(form_start_position::center_parent);
-  text("Editor");
+  text("Task editor");
   
   buttons_panel_.controls().push_back_range({cancel_button_, save_button_});
   buttons_panel_.border_sides(forms::border_sides::top);
@@ -33,7 +33,7 @@ editor_form::editor_form() {
   save_button_.dock(dock_style::right);
   save_button_.text("&Save");
   save_button_.width(90);
-  save_button_.click += {*this, &editor_form::on_save_button_click};
+  save_button_.click += {*this, &task_editor_form::on_save_button_click};
 
   main_panel_.controls().push_back_range({name_label_, name_text_box_, command_label_, command_text_box_, command_open_file_dialog_button_, special_label_, reboot_radio_button_, hourly_radio_button_, dayly_radio_button_, weekly_radio_button_, monthly_radio_button_, yearly_radio_button_, custom_radio_button_, time_label_, minute_label_, hour_label_, day_label_, month_label_, day_of_week_label_, minute_choice_, hour_choice_, day_choice_, month_choice_, day_of_week_choice_});
   main_panel_.dock(dock_style::fill);
@@ -44,7 +44,7 @@ editor_form::editor_form() {
   
   name_text_box_.location({20, 50});
   name_text_box_.width(525);
-  name_text_box_.text_changed += {*this, &editor_form::on_name_text_box_text_changed};
+  name_text_box_.text_changed += {*this, &task_editor_form::on_name_text_box_text_changed};
   
   command_label_.auto_size(true);
   command_label_.location({20, 100});
@@ -52,11 +52,11 @@ editor_form::editor_form() {
   
   command_text_box_.location({20, 130});
   command_text_box_.width(440);
-  command_text_box_.text_changed += {*this, &editor_form::on_command_text_box_text_changed};
+  command_text_box_.text_changed += {*this, &task_editor_form::on_command_text_box_text_changed};
 
   command_open_file_dialog_button_.location({470, 130});
   command_open_file_dialog_button_.text("...");
-  command_open_file_dialog_button_.click += {*this, &editor_form::on_command_open_file_dialog_button_click};
+  command_open_file_dialog_button_.click += {*this, &task_editor_form::on_command_open_file_dialog_button_click};
 
   special_label_.auto_size(true);
   special_label_.location({20, 180});
@@ -70,7 +70,7 @@ editor_form::editor_form() {
   reboot_radio_button_.text("Reboot");
   reboot_radio_button_.text_align(content_alignment::middle_center);
   reboot_radio_button_.width(75);
-  reboot_radio_button_.checked_changed += {*this, &editor_form::on_reboot_radio_button_checked_changed};
+  reboot_radio_button_.checked_changed += {*this, &task_editor_form::on_reboot_radio_button_checked_changed};
 
   hourly_radio_button_.appearance(forms::appearance::button);
   hourly_radio_button_.flat_appearance(flat_button_appearance().border_color(application::style_sheet().system_colors().control_text()).border_size(1).mouse_down_back_color(application::style_sheet().system_colors().accent()));
@@ -79,7 +79,7 @@ editor_form::editor_form() {
   hourly_radio_button_.text("Hourly");
   hourly_radio_button_.text_align(content_alignment::middle_center);
   hourly_radio_button_.width(75);
-  hourly_radio_button_.checked_changed += {*this, &editor_form::on_hourly_radio_button_checked_changed};
+  hourly_radio_button_.checked_changed += {*this, &task_editor_form::on_hourly_radio_button_checked_changed};
 
   dayly_radio_button_.appearance(forms::appearance::button);
   dayly_radio_button_.flat_appearance(flat_button_appearance().border_color(application::style_sheet().system_colors().control_text()).border_size(1).mouse_down_back_color(application::style_sheet().system_colors().accent()));
@@ -88,7 +88,7 @@ editor_form::editor_form() {
   dayly_radio_button_.text("Dayly");
   dayly_radio_button_.text_align(content_alignment::middle_center);
   dayly_radio_button_.width(75);
-  dayly_radio_button_.checked_changed += {*this, &editor_form::on_dayly_radio_button_checked_changed};
+  dayly_radio_button_.checked_changed += {*this, &task_editor_form::on_dayly_radio_button_checked_changed};
 
   weekly_radio_button_.appearance(forms::appearance::button);
   weekly_radio_button_.flat_appearance(flat_button_appearance().border_color(application::style_sheet().system_colors().control_text()).border_size(1).mouse_down_back_color(application::style_sheet().system_colors().accent()));
@@ -97,7 +97,7 @@ editor_form::editor_form() {
   weekly_radio_button_.text("Weekly");
   weekly_radio_button_.text_align(content_alignment::middle_center);
   weekly_radio_button_.width(75);
-  weekly_radio_button_.checked_changed += {*this, &editor_form::on_weekly_radio_button_checked_changed};
+  weekly_radio_button_.checked_changed += {*this, &task_editor_form::on_weekly_radio_button_checked_changed};
 
   monthly_radio_button_.appearance(forms::appearance::button);
   monthly_radio_button_.flat_appearance(flat_button_appearance().border_color(application::style_sheet().system_colors().control_text()).border_size(1).mouse_down_back_color(application::style_sheet().system_colors().accent()));
@@ -106,7 +106,7 @@ editor_form::editor_form() {
   monthly_radio_button_.text("Monthly");
   monthly_radio_button_.text_align(content_alignment::middle_center);
   monthly_radio_button_.width(75);
-  monthly_radio_button_.checked_changed += {*this, &editor_form::on_monthly_radio_button_checked_changed};
+  monthly_radio_button_.checked_changed += {*this, &task_editor_form::on_monthly_radio_button_checked_changed};
 
   yearly_radio_button_.appearance(forms::appearance::button);
   yearly_radio_button_.flat_appearance(flat_button_appearance().border_color(application::style_sheet().system_colors().control_text()).border_size(1).mouse_down_back_color(application::style_sheet().system_colors().accent()));
@@ -115,7 +115,7 @@ editor_form::editor_form() {
   yearly_radio_button_.text("Yearly");
   yearly_radio_button_.text_align(content_alignment::middle_center);
   yearly_radio_button_.width(75);
-  yearly_radio_button_.checked_changed += {*this, &editor_form::on_yearly_radio_button_checked_changed};
+  yearly_radio_button_.checked_changed += {*this, &task_editor_form::on_yearly_radio_button_checked_changed};
 
   custom_radio_button_.appearance(forms::appearance::button);
   custom_radio_button_.flat_appearance(flat_button_appearance().border_color(application::style_sheet().system_colors().control_text()).border_size(1).mouse_down_back_color(application::style_sheet().system_colors().accent()));
@@ -124,7 +124,7 @@ editor_form::editor_form() {
   custom_radio_button_.text("Custom");
   custom_radio_button_.text_align(content_alignment::middle_center);
   custom_radio_button_.width(75);
-  custom_radio_button_.checked_changed += {*this, &editor_form::on_custom_radio_button_checked_changed};
+  custom_radio_button_.checked_changed += {*this, &task_editor_form::on_custom_radio_button_checked_changed};
 
   time_label_.auto_size(true);
   time_label_.location({20, 260});
@@ -189,11 +189,11 @@ editor_form::editor_form() {
   on_load_task();
 }
 
-const cron_gui::task& editor_form::task() const noexcept {
+const cron_gui::task& task_editor_form::task() const noexcept {
   return task_;
 }
 
-editor_form& editor_form::task(const cron_gui::task& value) noexcept {
+task_editor_form& task_editor_form::task(const cron_gui::task& value) noexcept {
   if (task_ != value) {
     task_ = value;
     on_load_task();
@@ -201,7 +201,7 @@ editor_form& editor_form::task(const cron_gui::task& value) noexcept {
   return *this;
 }
 
-void editor_form::on_command_open_file_dialog_button_click(xtd::object& sender, const xtd::event_args& e) {
+void task_editor_form::on_command_open_file_dialog_button_click(xtd::object& sender, const xtd::event_args& e) {
   open_file_dialog dialog;
   dialog.initial_directory(!command_text_box_.text().empty() ? io::path::get_directory_name(command_text_box_.text()) : environment::get_folder_path(environment::special_folder::desktop));
   if (!command_text_box_.text().empty()) dialog.file_name(io::path::get_file_name(command_text_box_.text()));
@@ -209,12 +209,12 @@ void editor_form::on_command_open_file_dialog_button_click(xtd::object& sender, 
   command_text_box_.text(dialog.file_name());
 }
 
-void editor_form::on_command_text_box_text_changed(xtd::object& sender, const xtd::event_args& e) {
+void task_editor_form::on_command_text_box_text_changed(xtd::object& sender, const xtd::event_args& e) {
   task_.command(command_text_box_.text());
   on_update_task();
 }
 
-void editor_form::on_custom_radio_button_checked_changed(xtd::object& sender, const xtd::event_args& e) {
+void task_editor_form::on_custom_radio_button_checked_changed(xtd::object& sender, const xtd::event_args& e) {
   if (!custom_radio_button_.checked()) return;
   task_.reboot(false);
   task_.minute(nullptr);
@@ -225,7 +225,7 @@ void editor_form::on_custom_radio_button_checked_changed(xtd::object& sender, co
   on_update_task();
 }
 
-void editor_form::on_dayly_radio_button_checked_changed(xtd::object& sender, const xtd::event_args& e) {
+void task_editor_form::on_dayly_radio_button_checked_changed(xtd::object& sender, const xtd::event_args& e) {
   if (!dayly_radio_button_.checked()) return;
   task_.reboot(false);
   task_.minute(0U);
@@ -236,7 +236,7 @@ void editor_form::on_dayly_radio_button_checked_changed(xtd::object& sender, con
   on_update_task();
 }
 
-void editor_form::on_hourly_radio_button_checked_changed(xtd::object& sender, const xtd::event_args& e) {
+void task_editor_form::on_hourly_radio_button_checked_changed(xtd::object& sender, const xtd::event_args& e) {
   if (!hourly_radio_button_.checked()) return;
   task_.reboot(false);
   task_.minute(0U);
@@ -247,11 +247,11 @@ void editor_form::on_hourly_radio_button_checked_changed(xtd::object& sender, co
   on_update_task();
 }
 
-void editor_form::on_load_task() {
+void task_editor_form::on_load_task() {
   on_update_task();
 }
 
-void editor_form::on_monthly_radio_button_checked_changed(xtd::object& sender, const xtd::event_args& e) {
+void task_editor_form::on_monthly_radio_button_checked_changed(xtd::object& sender, const xtd::event_args& e) {
   if (!monthly_radio_button_.checked()) return;
   task_.reboot(false);
   task_.minute(0U);
@@ -262,12 +262,12 @@ void editor_form::on_monthly_radio_button_checked_changed(xtd::object& sender, c
   on_update_task();
 }
 
-void editor_form::on_name_text_box_text_changed(xtd::object& sender, const xtd::event_args& e) {
+void task_editor_form::on_name_text_box_text_changed(xtd::object& sender, const xtd::event_args& e) {
   task_.name(name_text_box_.text());
   on_update_task();
 }
 
-void editor_form::on_reboot_radio_button_checked_changed(xtd::object& sender, const xtd::event_args& e) {
+void task_editor_form::on_reboot_radio_button_checked_changed(xtd::object& sender, const xtd::event_args& e) {
   if (!reboot_radio_button_.checked()) return;
   task_.reboot(true);
   task_.minute(nullptr);
@@ -278,11 +278,11 @@ void editor_form::on_reboot_radio_button_checked_changed(xtd::object& sender, co
   on_update_task();
 }
 
-void editor_form::on_save_button_click(xtd::object& sender, const xtd::event_args& e) {
+void task_editor_form::on_save_button_click(xtd::object& sender, const xtd::event_args& e) {
   on_save_task();
 }
 
-void editor_form::on_save_task() {
+void task_editor_form::on_save_task() {
   task_.name(name_text_box_.text());
   task_.command(command_text_box_.text());
   task_.reboot(reboot_radio_button_.checked());
@@ -298,7 +298,7 @@ void editor_form::on_save_task() {
   else task_.day_of_week(nullptr);
 }
 
-void editor_form::on_update_task() {
+void task_editor_form::on_update_task() {
   name_text_box_.text(task_.name());
   command_text_box_.text(task_.command());
   
@@ -317,7 +317,7 @@ void editor_form::on_update_task() {
   day_of_week_choice_.selected_index(!task_.day_of_week() ? 0U : as<uint32>(task_.day_of_week().value()) + 1U);
 }
 
-void editor_form::on_weekly_radio_button_checked_changed(xtd::object& sender, const xtd::event_args& e) {
+void task_editor_form::on_weekly_radio_button_checked_changed(xtd::object& sender, const xtd::event_args& e) {
   if (!weekly_radio_button_.checked()) return;
   task_.reboot(false);
   task_.minute(0U);
@@ -328,7 +328,7 @@ void editor_form::on_weekly_radio_button_checked_changed(xtd::object& sender, co
   on_update_task();
 }
 
-void editor_form::on_yearly_radio_button_checked_changed(xtd::object& sender, const xtd::event_args& e) {
+void task_editor_form::on_yearly_radio_button_checked_changed(xtd::object& sender, const xtd::event_args& e) {
   if (!yearly_radio_button_.checked()) return;
   task_.reboot(false);
   task_.minute(0U);
