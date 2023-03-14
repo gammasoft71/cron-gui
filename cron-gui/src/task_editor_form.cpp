@@ -186,6 +186,8 @@ task_editor_form::task_editor_form() {
   day_of_week_choice_.width(130);
   day_of_week_choice_.selected_index(0);
 
+  name_text_box_.focus();
+
   on_load_task();
 }
 
