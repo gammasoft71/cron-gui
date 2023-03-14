@@ -2,7 +2,8 @@
 
 #include "cron_api.h"
 
-using namespace cron_gui;
+using namespace std;
+using namespace cron_gui::api;
 
 vector<cron::task> cron::load() {
   auto result = vector<task> {};
