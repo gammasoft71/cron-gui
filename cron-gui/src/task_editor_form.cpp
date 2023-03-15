@@ -15,6 +15,7 @@ task_editor_form::task_editor_form() {
   maximize_box(false);
   minimize_box(false);
   start_position(form_start_position::center_parent);
+  show_icon(false);
   text("Task editor");
   
   buttons_panel_.controls().push_back_range({cancel_button_, save_button_});
