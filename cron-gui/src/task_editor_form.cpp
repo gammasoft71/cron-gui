@@ -183,7 +183,7 @@ task_editor_form::task_editor_form() {
   
   day_of_week_choice_.auto_size(true);
   day_of_week_choice_.location({415, 310});
-  day_of_week_choice_.items().push_back_range({"-", "sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"});
+  day_of_week_choice_.items().push_back_range({"-", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"});
   day_of_week_choice_.width(130);
   day_of_week_choice_.selected_index(0);
 
