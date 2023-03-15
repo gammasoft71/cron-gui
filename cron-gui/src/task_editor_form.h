@@ -48,7 +48,7 @@ namespace cron_gui {
     xtd::forms::radio_button yearly_radio_button_;
     xtd::forms::radio_button reboot_radio_button_;
     xtd::forms::radio_button custom_radio_button_;
-    xtd::forms::label time_label_;
+    xtd::forms::label every_label_;
     xtd::forms::label minute_label_;
     xtd::forms::label hour_label_;
     xtd::forms::label day_label_;

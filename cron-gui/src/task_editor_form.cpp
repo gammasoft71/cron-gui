@@ -35,7 +35,7 @@ task_editor_form::task_editor_form() {
   save_button_.width(90);
   save_button_.click += {*this, &task_editor_form::on_save_button_click};
 
-  main_panel_.controls().push_back_range({name_label_, name_text_box_, command_label_, command_text_box_, command_open_file_dialog_button_, special_label_, reboot_radio_button_, hourly_radio_button_, dayly_radio_button_, weekly_radio_button_, monthly_radio_button_, yearly_radio_button_, custom_radio_button_, time_label_, minute_label_, hour_label_, day_label_, month_label_, day_of_week_label_, minute_choice_, hour_choice_, day_choice_, month_choice_, day_of_week_choice_});
+  main_panel_.controls().push_back_range({name_label_, name_text_box_, command_label_, command_text_box_, command_open_file_dialog_button_, special_label_, reboot_radio_button_, hourly_radio_button_, dayly_radio_button_, weekly_radio_button_, monthly_radio_button_, yearly_radio_button_, custom_radio_button_, every_label_, minute_label_, hour_label_, day_label_, month_label_, day_of_week_label_, minute_choice_, hour_choice_, day_choice_, month_choice_, day_of_week_choice_});
   main_panel_.dock(dock_style::fill);
   
   name_label_.auto_size(true);
@@ -126,9 +126,9 @@ task_editor_form::task_editor_form() {
   custom_radio_button_.width(75);
   custom_radio_button_.checked_changed += {*this, &task_editor_form::on_custom_radio_button_checked_changed};
 
-  time_label_.auto_size(true);
-  time_label_.location({20, 260});
-  time_label_.text("Every");
+  every_label_.auto_size(true);
+  every_label_.location({20, 260});
+  every_label_.text("Every");
 
   minute_label_.auto_size(true);
   minute_label_.location({20, 290});
