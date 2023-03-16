@@ -113,16 +113,15 @@ void main_form::on_edit_button_click(object& sender, const event_args& e) {
 }
 
 void main_form::on_help_abut_menu_item_click(xtd::object& sender, const xtd::event_args& e) {
-  about_dialog dialog;
-  dialog.icon(properties::resources::cron_gui_png());
-  dialog.name("cron-gui");
-  dialog.version("1.0");
-  dialog.long_version("1.0.0");
-  dialog.description("Simple GUI to managing your local crontab.");
-  dialog.website("https://gammasoft71.wixsite.com/gammasoft");
-  dialog.website_label("gammasoft");
-  dialog.copyright("Copyright (c) 2023 Gammasoft.\nAll rights reserved.");
-  dialog.show();
+  about_dialog_.icon(properties::resources::cron_gui_png());
+  about_dialog_.name("cron-gui");
+  about_dialog_.version("1.0");
+  about_dialog_.long_version("1.0.0");
+  about_dialog_.description("Simple GUI to managing your local crontab.");
+  about_dialog_.website("https://gammasoft71.wixsite.com/gammasoft");
+  about_dialog_.website_label("gammasoft");
+  about_dialog_.copyright("Copyright (c) 2023 Gammasoft.\nAll rights reserved.");
+  about_dialog_.show(*this);
 }
 
 void main_form::on_task_exit_menu_item_click(xtd::object& sender, const xtd::event_args& e) {
