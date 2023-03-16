@@ -30,6 +30,7 @@ main_form::main_form() {
   task_list_box_.dock(dock_style::fill);
   task_list_box_.selected_index_changed += event_handler {*this, &main_form::on_task_list_box_selected_index_changed};
   task_list_box_.double_click += event_handler {*this, &main_form::on_edit_button_click};
+  task_list_box_.focus();
   
   create_button_.dock(dock_style::right);
   create_button_.image(button_images::add());
