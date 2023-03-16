@@ -93,7 +93,6 @@ void main_form::on_delete_button_click(object& sender, const event_args& e) {
   if (task_list_box_.selected_index() == task_list_box_.npos) return;
   auto selected_index = task_list_box_.selected_index();
   task_list_box_.items().erase_at(selected_index);
-  task_list_box_.selected_index(task_list_box_.npos);
   if (selected_index < task_list_box_.items().size()) task_list_box_.selected_index(selected_index);
   else if (task_list_box_.items().size()) task_list_box_.selected_index(task_list_box_.items().size() - 1);
   save_tasks();
