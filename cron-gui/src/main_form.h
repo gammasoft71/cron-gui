@@ -27,7 +27,6 @@ namespace cron_gui {
     void on_task_list_box_selected_index_changed(xtd::object& sender, const xtd::event_args& e);
     void save_tasks();
     
-    xtd::forms::about_dialog about_dialog_;
     xtd::forms::menu_item task_create_menu_item_ {"&Create", {*this, &main_form::on_create_button_click}, xtd::forms::menu_images::from_name("list-add"), xtd::forms::shortcut::cmd_n};
     xtd::forms::menu_item task_edit_menu_item_ {"&Edit", {*this, &main_form::on_edit_button_click}, xtd::forms::menu_images::from_name("document-edit"), xtd::forms::shortcut::cmd_o};
     xtd::forms::menu_item task_delete_menu_item_ {"&Delete", {*this, &main_form::on_delete_button_click}, xtd::forms::menu_images::from_name("list-remove"), xtd::forms::shortcut::cmd_del};
